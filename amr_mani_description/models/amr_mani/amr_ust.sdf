@@ -1,0 +1,2191 @@
+<?xml version="1.0"?>
+<sdf version='1.7'>
+  <model name='amr_ust'>
+    <link name='base_link'>
+      <inertial>
+        <pose>0.015037 -0.000153 0.061192 0 -0 0</pose>
+        <mass>5.85819</mass>
+        <inertia>
+          <ixx>0.198476</ixx>
+          <ixy>3.24366e-05</ixy>
+          <ixz>0.00142264</ixz>
+          <iyy>0.306798</iyy>
+          <iyz>-1.14242e-06</iyz>
+          <izz>0.488813</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/base_link.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/base_link.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 1 0 1</ambient>
+          <diffuse>1 1 0 1</diffuse>   
+          <specular>1 1 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+
+    <link name="mani_base">
+      <pose relative_to="base_link">0 0 0.11 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <iyy>0.001</iyy>
+          <izz>0.001</izz>
+          <ixy>0.0</ixy>
+          <iyz>0.0</iyz>
+          <ixz>0.0</ixz>
+        </inertia>
+      </inertial>
+      <collision name="mani_base_collision">
+        <geometry>
+          <cylinder>
+            <radius>0.2</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="mani_base_collision">
+        <geometry>
+          <cylinder>
+            <radius>0.2</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>  
+          <diffuse>0 1 0 1</diffuse>   
+          <specular>0 1 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name="base_to_mani_base_joint" type="fixed">
+      <pose relative_to="base_link">0 0 0.11 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>mani_base</child>
+    </joint>
+
+    <link name="imu_link">
+      <pose relative_to="base_link">-0.00001 0.0 0.014065 0 0 0</pose>
+      <interial>
+        <pose>-0.0037135131762633944 0.00015074437785556966 -7.192465925183467e-06 0 0 0</pose>
+        <mass>0.028</mass>
+        <inertia>
+          <ixx>4e-06</ixx>
+          <iyy>2e-06</iyy>
+          <izz>2e-06</izz>
+          <ixy>0.0</ixy>
+          <iyz>0.0</iyz>
+          <ixz>0.0</ixz>
+        </inertia>
+      </interial>
+      <collision name='base_link_fixed_joint_lump__imu_link_collision_1'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/imu_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_fixed_joint_lump__imu_link_visual_1'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/imu_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>  
+          <diffuse>0 1 0 1</diffuse>   
+          <specular>0 1 0 1</specular> 
+        </material>
+      </visual>
+      <sensor name="imu" type="imu">
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <topic>imu</topic>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+      </sensor>
+    </link>
+    <joint name="base_to_imu_joint" type="fixed">
+      <pose relative_to="base_link">-0.00001 0.0 0.014065 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>imu_link</child>
+    </joint>
+
+    <link name="camera_link">
+      <pose relative_to="base_link">0.0001 0.0 0.05 0 0 0</pose>
+      <collision name='base_link_fixed_joint_lump__camera_link_collision_2'>
+        <pose>0 -0.00085 -0.004538 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/Camera_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_fixed_joint_lump__camera_link_visual_2'>
+        <pose>0 -0.00085 -0.004538 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/Camera_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.75 0.75 0.75 1</ambient> 
+          <diffuse>0.8 0.8 0.8 1</diffuse>      
+          <specular>0.9 0.9 0.9 1</specular>    
+        </material>
+      </visual>
+    </link>
+    <joint name="base_to_camera_joint" type="fixed">
+      <pose relative_to="base_link">0.005 0.0 0.05 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>camera_link</child>
+    </joint>
+
+    <link name='wheel_hub_1'>
+      <pose relative_to='base_link'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-2.6e-05 0.020564 -3.3e-05 0 -0 0</pose>
+        <mass>0.754717</mass>
+        <inertia>
+          <ixx>0.000439</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000283</iyy>
+          <iyz>0</iyz>
+          <izz>0.000439</izz>
+        </inertia>
+      </inertial>
+      <collision name='wheel_hub_1_collision'>
+        <pose>0.3 0.275 0.005 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/FWL.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='wheel_hub_1_visual'>
+        <pose>0.3 0.275 0.005 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/FWL.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 1' type='revolute'>
+      <pose relative_to='base_link'>0.3 0.275 0.005 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>wheel_hub_1</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- <joint name='Revolute 10' type='revolute'>
+      <pose relative_to='wheel_hub_1'>-0.014065 0.044317 -0.038968 0 -0 0</pose>
+      <parent>wheel_hub_1</parent>
+      <child>roller_1_6</child>
+      <axis>
+        <xyz>-0.5 -0.707107 0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_1_6'>
+      <pose relative_to='Revolute 10'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.012405 -0.017543 0.012405 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>-6e-06</ixy>
+          <ixz>4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_1_6_collision'>
+        <pose>-0.230562 -0.323284 0.005992 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_6.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_1_6_visual'>
+        <pose>-0.230562 -0.323284 0.005992 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_6.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 11' type='revolute'>
+      <pose relative_to='wheel_hub_1'>-0.0375 0.044317 -0.017609 0 -0 0</pose>
+      <parent>wheel_hub_1</parent>
+      <child>roller_1_7</child>
+      <axis>
+        <xyz>0 -0.707107 0.707107</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_1_7'>
+      <pose relative_to='Revolute 11'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 -0.017543 0.017543 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>2.1e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>8e-06</iyz>
+          <izz>1.3e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_1_7_collision'>
+        <pose>-0.207127 -0.323284 -0.015367 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_7.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_1_7_visual'>
+        <pose>-0.207127 -0.323284 -0.015367 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_7.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 12' type='revolute'>
+      <pose relative_to='wheel_hub_1'>-0.038968 0.044317 0.014065 0 -0 0</pose>
+      <parent>wheel_hub_1</parent>
+      <child>roller_1_8</child>
+      <axis>
+        <xyz>0.5 -0.707107 0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_1_8'>
+      <pose relative_to='Revolute 12'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.012405 -0.017543 0.012405 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>6e-06</ixy>
+          <ixz>-4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_1_8_collision'>
+        <pose>-0.205659 -0.323284 -0.047041 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_8.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_1_8_visual'>
+        <pose>-0.205659 -0.323284 -0.047041 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_8.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 5' type='revolute'>
+      <pose relative_to='wheel_hub_1'>-0.017609 0.044317 0.0375 0 -0 0</pose>
+      <parent>wheel_hub_1</parent>
+      <child>roller_1_1</child>
+      <axis>
+        <xyz>0.707107 -0.707107 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_1_1'>
+      <pose relative_to='Revolute 5'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.017543 -0.017543 -0 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.3e-05</ixx>
+          <ixy>8e-06</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.1e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_1_1_collision'>
+        <pose>-0.227018 -0.323284 -0.070476 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_1_1_visual'>
+        <pose>-0.227018 -0.323284 -0.070476 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 6' type='revolute'>
+      <pose relative_to='wheel_hub_1'>0.014065 0.044317 0.038968 0 -0 0</pose>
+      <parent>wheel_hub_1</parent>
+      <child>roller_1_2</child>
+      <axis>
+        <xyz>0.5 -0.707107 -0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_1_2'>
+      <pose relative_to='Revolute 6'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.012405 -0.017543 -0.012405 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>6e-06</ixy>
+          <ixz>4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>-6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_1_2_collision'>
+        <pose>-0.258692 -0.323284 -0.071944 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_1_2_visual'>
+        <pose>-0.258692 -0.323284 -0.071944 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 7' type='revolute'>
+      <pose relative_to='wheel_hub_1'>0.0375 0.044317 0.017609 0 -0 0</pose>
+      <parent>wheel_hub_1</parent>
+      <child>roller_1_3</child>
+      <axis>
+        <xyz>0 -0.707107 -0.707107</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_1_3'>
+      <pose relative_to='Revolute 7'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 -0.017543 -0.017543 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>2.1e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>-8e-06</iyz>
+          <izz>1.3e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_1_3_collision'>
+        <pose>-0.282127 -0.323284 -0.050585 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_3.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_1_3_visual'>
+        <pose>-0.282127 -0.323284 -0.050585 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_3.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 8' type='revolute'>
+      <pose relative_to='wheel_hub_1'>0.038968 0.044317 -0.014065 0 -0 0</pose>
+      <parent>wheel_hub_1</parent>
+      <child>roller_1_4</child>
+      <axis>
+        <xyz>-0.5 -0.707107 -0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_1_4'>
+      <pose relative_to='Revolute 8'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.012405 -0.017543 -0.012405 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>-6e-06</ixy>
+          <ixz>-4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>-6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_1_4_collision'>
+        <pose>-0.283595 -0.323284 -0.018911 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_4.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_1_4_visual'>
+        <pose>-0.283595 -0.323284 -0.018911 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_4.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 9' type='revolute'>
+      <pose relative_to='wheel_hub_1'>0.017609 0.044317 -0.0375 0 -0 0</pose>
+      <parent>wheel_hub_1</parent>
+      <child>roller_1_5</child>
+      <axis>
+        <xyz>-0.707107 -0.707107 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_1_5'>
+      <pose relative_to='Revolute 9'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.017543 -0.017543 -0 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.3e-05</ixx>
+          <ixy>-8e-06</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.1e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_1_5_collision'>
+        <pose>-0.262236 -0.323284 0.004524 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_5.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_1_5_visual'>
+        <pose>-0.262236 -0.323284 0.004524 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_1_5.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link> -->
+
+    <link name='wheel_hub_2_1'>
+      <pose relative_to='base_link'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-2.6e-05 -0.020564 -3.3e-05 0 -0 0</pose>
+        <mass>0.754717</mass>
+        <inertia>
+          <ixx>0.000439</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000283</iyy>
+          <iyz>0</iyz>
+          <izz>0.000439</izz>
+        </inertia>
+      </inertial>
+      <collision name='wheel_hub_2_1_collision'>
+        <pose>0.3 -0.32 0.005 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/FWR.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='wheel_hub_2_1_visual'>
+        <pose>0.3 -0.32 0.005 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/FWR.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 2' type='revolute'>
+      <pose relative_to='base_link'>0.3 -0.32 0.005 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>wheel_hub_2_1</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- <joint name='Revolute 13' type='revolute'>
+      <pose relative_to='wheel_hub_2_1'>0.014065 -0.044318 0.038968 0 -0 0</pose>
+      <parent>wheel_hub_2_1</parent>
+      <child>roller_2_1</child>
+      <axis>
+        <xyz>0.5 0.707107 -0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_2_1'>
+      <pose relative_to='Revolute 13'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.012629 0.01786 -0.012629 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>-6e-06</ixy>
+          <ixz>4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_2_1_collision'>
+        <pose>-0.258692 0.323351 -0.071944 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_2_1_visual'>
+        <pose>-0.258692 0.323351 -0.071944 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 14' type='revolute'>
+      <pose relative_to='wheel_hub_2_1'>-0.017609 -0.044318 0.0375 0 -0 0</pose>
+      <parent>wheel_hub_2_1</parent>
+      <child>roller_2_2</child>
+      <axis>
+        <xyz>0.707107 0.707107 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_2_2'>
+      <pose relative_to='Revolute 14'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.01786 0.01786 -0 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.3e-05</ixx>
+          <ixy>-8e-06</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.1e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_2_2_collision'>
+        <pose>-0.227018 0.323351 -0.070476 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_2_2_visual'>
+        <pose>-0.227018 0.323351 -0.070476 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 15' type='revolute'>
+      <pose relative_to='wheel_hub_2_1'>0.0375 -0.044318 0.017609 0 -0 0</pose>
+      <parent>wheel_hub_2_1</parent>
+      <child>roller_2_3</child>
+      <axis>
+        <xyz>0 0.707107 -0.707107</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_2_3'>
+      <pose relative_to='Revolute 15'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 0.01786 -0.01786 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>2.1e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>8e-06</iyz>
+          <izz>1.3e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_2_3_collision'>
+        <pose>-0.282127 0.323351 -0.050585 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_3.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_2_3_visual'>
+        <pose>-0.282127 0.323351 -0.050585 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_3.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 16' type='revolute'>
+      <pose relative_to='wheel_hub_2_1'>0.038968 -0.044318 -0.014065 0 -0 0</pose>
+      <parent>wheel_hub_2_1</parent>
+      <child>roller_2_4</child>
+      <axis>
+        <xyz>-0.5 0.707107 -0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_2_4'>
+      <pose relative_to='Revolute 16'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.012629 0.01786 -0.012629 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>6e-06</ixy>
+          <ixz>-4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_2_4_collision'>
+        <pose>-0.283595 0.323351 -0.018911 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_4.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_2_4_visual'>
+        <pose>-0.283595 0.323351 -0.018911 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_4.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 17' type='revolute'>
+      <pose relative_to='wheel_hub_2_1'>0.017609 -0.044318 -0.0375 0 -0 0</pose>
+      <parent>wheel_hub_2_1</parent>
+      <child>roller_2_5</child>
+      <axis>
+        <xyz>-0.707107 0.707107 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_2_5'>
+      <pose relative_to='Revolute 17'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.01786 0.01786 -0 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.3e-05</ixx>
+          <ixy>8e-06</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.1e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_2_5_collision'>
+        <pose>-0.262236 0.323351 0.004524 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_5.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_2_5_visual'>
+        <pose>-0.262236 0.323351 0.004524 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_5.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 18' type='revolute'>
+      <pose relative_to='wheel_hub_2_1'>-0.014065 -0.044318 -0.038968 0 -0 0</pose>
+      <parent>wheel_hub_2_1</parent>
+      <child>roller_2_6</child>
+      <axis>
+        <xyz>-0.5 0.707107 0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_2_6'>
+      <pose relative_to='Revolute 18'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.012629 0.01786 0.012629 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>6e-06</ixy>
+          <ixz>4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>-6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_2_6_collision'>
+        <pose>-0.230562 0.323351 0.005992 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_6.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_2_6_visual'>
+        <pose>-0.230562 0.323351 0.005992 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_6.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 19' type='revolute'>
+      <pose relative_to='wheel_hub_2_1'>-0.0375 -0.044318 -0.017609 0 -0 0</pose>
+      <parent>wheel_hub_2_1</parent>
+      <child>roller_2_7</child>
+      <axis>
+        <xyz>0 0.707107 0.707107</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_2_7'>
+      <pose relative_to='Revolute 19'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 0.01786 0.01786 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>2.1e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>-8e-06</iyz>
+          <izz>1.3e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_2_7_collision'>
+        <pose>-0.207127 0.323351 -0.015367 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_7.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_2_7_visual'>
+        <pose>-0.207127 0.323351 -0.015367 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_7.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 20' type='revolute'>
+      <pose relative_to='wheel_hub_2_1'>-0.038968 -0.044318 0.014065 0 -0 0</pose>
+      <parent>wheel_hub_2_1</parent>
+      <child>roller_2_8</child>
+      <axis>
+        <xyz>0.5 0.707107 0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_2_8'>
+      <pose relative_to='Revolute 20'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.012629 0.01786 0.012629 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>-6e-06</ixy>
+          <ixz>-4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>-6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_2_8_collision'>
+        <pose>-0.205659 0.323351 -0.047041 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_8.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_2_8_visual'>
+        <pose>-0.205659 0.323351 -0.047041 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_2_8.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link> -->
+
+    <link name='wheel_hub_3_1'>
+      <pose relative_to='base_link'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-3.3e-05 0.020564 -2.6e-05 0 -0 0</pose>
+        <mass>0.754717</mass>
+        <inertia>
+          <ixx>0.000439</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000283</iyy>
+          <iyz>0</iyz>
+          <izz>0.000439</izz>
+        </inertia>
+      </inertial>
+      <collision name='wheel_hub_3_1_collision'>
+        <pose>-0.3 0.275 0.005 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/RWL.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='wheel_hub_3_1_visual'>
+        <pose>-0.3 0.275 0.005 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/RWL.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 3' type='revolute'>
+      <pose relative_to='base_link'>-0.3 0.275 0.005 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>wheel_hub_3_1</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- <joint name='Revolute 21' type='revolute'>
+      <pose relative_to='wheel_hub_3_1'>0.017609 0.044317 0.0375 0 -0 0</pose>
+      <parent>wheel_hub_3_1</parent>
+      <child>roller_3_1</child>
+      <axis>
+        <xyz>-0.707107 -0.707107 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_3_1'>
+      <pose relative_to='Revolute 21'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.017543 -0.017543 -0 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.3e-05</ixx>
+          <ixy>-8e-06</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.1e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_3_1_collision'>
+        <pose>0.250408 -0.322784 -0.070476 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_3_1_visual'>
+        <pose>0.250408 -0.322784 -0.070476 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 22' type='revolute'>
+      <pose relative_to='wheel_hub_3_1'>-0.014065 0.044317 0.038968 0 -0 0</pose>
+      <parent>wheel_hub_3_1</parent>
+      <child>roller_3_2</child>
+      <axis>
+        <xyz>-0.5 -0.707107 -0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_3_2'>
+      <pose relative_to='Revolute 22'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.012405 -0.017543 -0.012405 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>-6e-06</ixy>
+          <ixz>-4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>-6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_3_2_collision'>
+        <pose>0.282082 -0.322784 -0.071944 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_3_2_visual'>
+        <pose>0.282082 -0.322784 -0.071944 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 23' type='revolute'>
+      <pose relative_to='wheel_hub_3_1'>-0.0375 0.044317 0.017609 0 -0 0</pose>
+      <parent>wheel_hub_3_1</parent>
+      <child>roller_3_3</child>
+      <axis>
+        <xyz>0 -0.707107 -0.707107</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_3_3'>
+      <pose relative_to='Revolute 23'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 -0.017543 -0.017543 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>2.1e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>-8e-06</iyz>
+          <izz>1.3e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_3_3_collision'>
+        <pose>0.305517 -0.322784 -0.050585 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_3.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_3_3_visual'>
+        <pose>0.305517 -0.322784 -0.050585 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_3.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 24' type='revolute'>
+      <pose relative_to='wheel_hub_3_1'>-0.038968 0.044317 -0.014065 0 -0 0</pose>
+      <parent>wheel_hub_3_1</parent>
+      <child>roller_3_4</child>
+      <axis>
+        <xyz>0.5 -0.707107 -0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_3_4'>
+      <pose relative_to='Revolute 24'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.012405 -0.017543 -0.012405 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>6e-06</ixy>
+          <ixz>4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>-6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_3_4_collision'>
+        <pose>0.306985 -0.322784 -0.018911 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_4.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_3_4_visual'>
+        <pose>0.306985 -0.322784 -0.018911 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_4.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 25' type='revolute'>
+      <pose relative_to='wheel_hub_3_1'>-0.017609 0.044317 -0.0375 0 -0 0</pose>
+      <parent>wheel_hub_3_1</parent>
+      <child>roller_3_5</child>
+      <axis>
+        <xyz>0.707107 -0.707107 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_3_5'>
+      <pose relative_to='Revolute 25'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.017543 -0.017543 -0 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.3e-05</ixx>
+          <ixy>8e-06</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.1e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_3_5_collision'>
+        <pose>0.285626 -0.322784 0.004524 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_5.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_3_5_visual'>
+        <pose>0.285626 -0.322784 0.004524 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_5.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 26' type='revolute'>
+      <pose relative_to='wheel_hub_3_1'>0.014065 0.044317 -0.038968 0 -0 0</pose>
+      <parent>wheel_hub_3_1</parent>
+      <child>roller_3_6</child>
+      <axis>
+        <xyz>0.5 -0.707107 0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_3_6'>
+      <pose relative_to='Revolute 26'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.012405 -0.017543 0.012405 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>6e-06</ixy>
+          <ixz>-4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_3_6_collision'>
+        <pose>0.253952 -0.322784 0.005992 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_6.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_3_6_visual'>
+        <pose>0.253952 -0.322784 0.005992 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_6.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 27' type='revolute'>
+      <pose relative_to='wheel_hub_3_1'>0.038968 0.044317 0.014065 0 -0 0</pose>
+      <parent>wheel_hub_3_1</parent>
+      <child>roller_3_7</child>
+      <axis>
+        <xyz>-0.5 -0.707107 0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_3_7'>
+      <pose relative_to='Revolute 27'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.012405 -0.017543 0.012405 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>-6e-06</ixy>
+          <ixz>4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_3_7_collision'>
+        <pose>0.229049 -0.322784 -0.047041 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_7.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_3_7_visual'>
+        <pose>0.229049 -0.322784 -0.047041 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_7.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 28' type='revolute'>
+      <pose relative_to='wheel_hub_3_1'>0.0375 0.044317 -0.017609 0 -0 0</pose>
+      <parent>wheel_hub_3_1</parent>
+      <child>roller_3_8</child>
+      <axis>
+        <xyz>0 -0.707107 0.707107</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_3_8'>
+      <pose relative_to='Revolute 28'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 -0.017543 0.017543 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>2.1e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>8e-06</iyz>
+          <izz>1.3e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_3_8_collision'>
+        <pose>0.230517 -0.322784 -0.015367 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_8.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_3_8_visual'>
+        <pose>0.230517 -0.322784 -0.015367 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_3_8.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link> -->
+
+    <link name='wheel_hub_4_1'>
+      <pose relative_to='base_link'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-2.6e-05 -0.020564 3.3e-05 0 -0 0</pose>
+        <mass>0.754717</mass>
+        <inertia>
+          <ixx>0.000439</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000283</iyy>
+          <iyz>0</iyz>
+          <izz>0.000439</izz>
+        </inertia>
+      </inertial>
+      <collision name='wheel_hub_4_1_collision'>
+        <pose>-0.3 -0.32 0.005 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/RWR.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='wheel_hub_4_1_visual'>
+        <pose>-0.3 -0.32 0.005 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/RWR.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 4' type='revolute'>
+      <pose relative_to='base_link'>-0.3 -0.32 0.005 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>wheel_hub_4_1</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint> 
+
+    <!-- <joint name='Revolute 29' type='revolute'>
+      <pose relative_to='wheel_hub_4_1'>0.017609 -0.044318 0.0375 0 -0 0</pose>
+      <parent>wheel_hub_4_1</parent>
+      <child>roller_4_1</child>
+      <axis>
+        <xyz>-0.707107 0.707107 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_4_1'>
+      <pose relative_to='Revolute 29'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.01786 0.01786 -0 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.3e-05</ixx>
+          <ixy>8e-06</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.1e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_4_1_collision'>
+        <pose>0.250408 0.323851 -0.070476 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_4_1_visual'>
+        <pose>0.250408 0.323851 -0.070476 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 30' type='revolute'>
+      <pose relative_to='wheel_hub_4_1'>-0.014065 -0.044318 0.038968 0 -0 0</pose>
+      <parent>wheel_hub_4_1</parent>
+      <child>roller_4_2</child>
+      <axis>
+        <xyz>-0.5 0.707107 -0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_4_2'>
+      <pose relative_to='Revolute 30'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.012629 0.01786 -0.012629 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>6e-06</ixy>
+          <ixz>-4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_4_2_collision'>
+        <pose>0.282082 0.323851 -0.071944 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_4_2_visual'>
+        <pose>0.282082 0.323851 -0.071944 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 31' type='revolute'>
+      <pose relative_to='wheel_hub_4_1'>-0.0375 -0.044318 0.017609 0 -0 0</pose>
+      <parent>wheel_hub_4_1</parent>
+      <child>roller_4_3</child>
+      <axis>
+        <xyz>0 0.707107 -0.707107</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_4_3'>
+      <pose relative_to='Revolute 31'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 0.01786 -0.01786 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>2.1e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>8e-06</iyz>
+          <izz>1.3e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_4_3_collision'>
+        <pose>0.305517 0.323851 -0.050585 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_3.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_4_3_visual'>
+        <pose>0.305517 0.323851 -0.050585 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_3.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 32' type='revolute'>
+      <pose relative_to='wheel_hub_4_1'>-0.038968 -0.044318 -0.014065 0 -0 0</pose>
+      <parent>wheel_hub_4_1</parent>
+      <child>roller_4_4</child>
+      <axis>
+        <xyz>0.5 0.707107 -0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_4_4'>
+      <pose relative_to='Revolute 32'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.012629 0.01786 -0.012629 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>-6e-06</ixy>
+          <ixz>4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_4_4_collision'>
+        <pose>0.306985 0.323851 -0.018911 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_4.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_4_4_visual'>
+        <pose>0.306985 0.323851 -0.018911 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_4.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 33' type='revolute'>
+      <pose relative_to='wheel_hub_4_1'>-0.017609 -0.044318 -0.0375 0 -0 0</pose>
+      <parent>wheel_hub_4_1</parent>
+      <child>roller_4_5</child>
+      <axis>
+        <xyz>0.707107 0.707107 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_4_5'>
+      <pose relative_to='Revolute 33'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.01786 0.01786 -0 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.3e-05</ixx>
+          <ixy>-8e-06</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.1e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_4_5_collision'>
+        <pose>0.285626 0.323851 0.004524 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_5.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_4_5_visual'>
+        <pose>0.285626 0.323851 0.004524 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_5.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 34' type='revolute'>
+      <pose relative_to='wheel_hub_4_1'>0.014065 -0.044318 -0.038968 0 -0 0</pose>
+      <parent>wheel_hub_4_1</parent>
+      <child>roller_4_6</child>
+      <axis>
+        <xyz>0.5 0.707107 0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_4_6'>
+      <pose relative_to='Revolute 34'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.012629 0.01786 0.012629 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>-6e-06</ixy>
+          <ixz>-4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>-6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_4_6_collision'>
+        <pose>0.253952 0.323851 0.005992 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_6.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_4_6_visual'>
+        <pose>0.253952 0.323851 0.005992 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_6.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 35' type='revolute'>
+      <pose relative_to='wheel_hub_4_1'>0.0375 -0.044318 -0.017609 0 -0 0</pose>
+      <parent>wheel_hub_4_1</parent>
+      <child>roller_4_7</child>
+      <axis>
+        <xyz>0 0.707107 0.707107</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_4_7'>
+      <pose relative_to='Revolute 35'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 0.01786 0.01786 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>2.1e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>-8e-06</iyz>
+          <izz>1.3e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_4_7_collision'>
+        <pose>0.230517 0.323851 -0.015367 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_7.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_4_7_visual'>
+        <pose>0.230517 0.323851 -0.015367 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_7.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link>
+    <joint name='Revolute 36' type='revolute'>
+      <pose relative_to='wheel_hub_4_1'>0.038968 -0.044318 0.014065 0 -0 0</pose>
+      <parent>wheel_hub_4_1</parent>
+      <child>roller_4_8</child>
+      <axis>
+        <xyz>-0.5 0.707107 0.5</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='roller_4_8'>
+      <pose relative_to='Revolute 36'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.012629 0.01786 0.012629 0 -0 0</pose>
+        <mass>0.104378</mass>
+        <inertia>
+          <ixx>1.7e-05</ixx>
+          <ixy>6e-06</ixy>
+          <ixz>4e-06</ixz>
+          <iyy>1.3e-05</iyy>
+          <iyz>-6e-06</iyz>
+          <izz>1.7e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='roller_4_8_collision'>
+        <pose>0.229049 0.323851 -0.047041 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_8.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='roller_4_8_visual'>
+        <pose>0.229049 0.323851 -0.047041 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>/home/labeeb/amr_ws/src/amr_mani_description/models/amr_mani/meshes/roller_4_8.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>   
+          <diffuse>0 0 0 1</diffuse>   
+          <specular>0 0 0 1</specular> 
+        </material>
+      </visual>
+    </link> -->
+
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <topic>joint_states</topic> 
+      <joint_name>Revolute 1</joint_name>
+      <joint_name>Revolute 2</joint_name>
+      <joint_name>Revolute 3</joint_name>
+      <joint_name>Revolute 4</joint_name>
+    </plugin>
+
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>Revolute 1</left_joint>
+      <right_joint>Revolute 2</right_joint>
+      <left_joint>Revolute 3</left_joint>
+      <right_joint>Revolute 4</right_joint>
+
+
+      <wheel_separation>0.595</wheel_separation>
+      <wheel_radius>0.1</wheel_radius> 
+
+      <!-- <max_velocity></max_velocity>
+      <max_angular></max_angular> -->
+      <max_linear_acceleration>0.1</max_linear_acceleration> 
+
+      <topic>cmd_vel</topic> 
+
+      <frame_id>odom</frame_id> <!-- from <odometry_frame> -->
+      <child_frame_id>base_link</child_frame_id> <!-- from <robot_base_frame> -->
+      <odom_publisher_frequency>50.0</odom_publisher_frequency> 
+    </plugin>
+
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu">
+    </plugin>
+
+  </model>
+</sdf>
