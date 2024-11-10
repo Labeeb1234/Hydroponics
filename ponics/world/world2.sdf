@@ -25,7 +25,6 @@
       name="gz::sim::systems::SceneBroadcaster">
     </plugin>
 
-
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
     <atmosphere type='adiabatic'/>
@@ -37,51 +36,6 @@
     </scene>
 
 
-      <!-- <plugin filename="MinimalScene" name="3D View">
-        <gz-gui>
-          <title>3D View</title>
-          <property type="bool" key="showTitleBar">false</property>
-          <property type="string" key="state">docked</property>
-        </gz-gui>
-
-        <engine>ogre2</engine>
-        <scene>scene</scene>
-        <ambient_light>0.4 0.4 0.4</ambient_light>
-        <background_color>0.8 0.8 0.8</background_color>
-        <camera_pose>-6 0 6 0 0.5 0</camera_pose>
-      </plugin> -->
-
- 
-
-      <!-- <plugin filename="GzSceneManager" name="Scene Manager">
-        <gz-gui>
-          <property key="resizable" type="bool">false</property>
-          <property key="width" type="double">5</property>
-          <property key="height" type="double">5</property>
-          <property key="state" type="string">floating</property>
-          <property key="showTitleBar" type="bool">false</property>
-        </gz-gui>
-      </plugin>
-      <plugin filename="InteractiveViewControl" name="Interactive view control">
-        <gz-gui>
-          <property key="resizable" type="bool">false</property>
-          <property key="width" type="double">5</property>
-          <property key="height" type="double">5</property>
-          <property key="state" type="string">floating</property>
-          <property key="showTitleBar" type="bool">false</property>
-        </gz-gui>
-      </plugin>
-
-
-      <plugin filename="WorldStats" name="World stats">
-
-
-        <sim_time>true</sim_time>
-        <real_time>true</real_time>
-        <real_time_factor>true</real_time_factor>
-        <iterations>true</iterations>
-      </plugin> -->
-    
 
     <model name='ground_plane'>
       <static>true</static>
@@ -132,6 +86,23 @@
       <pose>0 0 0 0 -0 0</pose>
       <self_collide>false</self_collide>
     </model>
+
+    <include>
+        <uri>model://Mud Box</uri>
+        <name>mud_box_1</name>
+        <pose>-7.98032 0.053884 0 0 -0 0</pose> 
+    </include>
+    <include>
+        <uri>model://Mud Box</uri>
+        <name>mud_box_2</name>
+        <pose>-7.8782 -9.9507 0 0 -0 0</pose>
+    </include>
+    <include>
+        <uri>model://Mud Box</uri>
+        <name>mud_box_3</name>
+        <pose>-7.98798 10.0127 0 0 -0 0</pose>
+    </include>
+
     
     <light name='sun' type='directional'>
       <pose>0 0 10 0 -0 0</pose>
@@ -156,7 +127,7 @@
     <include>
       <uri>model://amr_mani</uri>
       <name>amr_ust</name>
-      <pose>0 0 0.15 0 0 0</pose>
+      <pose>0 0 0.5 0 0 0</pose>
     </include>
 
 

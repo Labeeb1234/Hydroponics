@@ -25,9 +25,11 @@ def generate_launch_description():
         launch_arguments={'gz_args': PathJoinSubstitution([
             pkg_dir,
             'world',
-            f'{world_name}.sdf -r'
+            f'{world_name}.sdf -r' 
         ])}.items(),
     )
+
+    
 
 
     # bridge = Node(

@@ -27,8 +27,16 @@ install(
   DIRECTORY
     launch
     world
+    config
   DESTINATION
     share/${PROJECT_NAME}/
+)
+
+install(
+  DIRECTORY
+    models
+  DESTINATION
+    share/${PROJECT_NAME}/models/
 )
 
 ament_package()
