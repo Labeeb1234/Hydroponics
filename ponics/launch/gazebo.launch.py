@@ -15,17 +15,21 @@ def generate_launch_description():
     pkg_gazebo_dir = get_package_share_directory('ponics')
     pkg_project_description = get_package_share_directory('amr_mani_description')
 
-    # Load the SDF file from "description" package
-    sdf_file  =  os.path.join(pkg_project_description, 'models', 'amr_mani', 'amr_ust.sdf')
-    with open(sdf_file, 'r') as infp:
-        robot_desc = infp.read()
-        # print(f"{robot_desc}")
+    xacro_file = os.path.join(pkg_project_description, 'urdf', 'amr_mani.xacro')
+    robot_description_config = xacro.process_file(xacro_file) 
+    robot_desc = robot_description_config.toxml()
 
 
     sim_time_arg = DeclareLaunchArgument(
         'use_sim_time',
         default_value='True',
         description='whether to use simulation time or not'
+    )
+
+    pause_sim_arg = DeclareLaunchArgument(
+        'pause_sim',
+        default_value='true',
+        description='whether to pause to play the simulation'
     )
 
     robot_state_publisher = Node(
@@ -65,16 +69,40 @@ def generate_launch_description():
         ])
     )
 
+    urdf_spawn_node = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        arguments=[
+            '-entity', 'amr_mani',
+            '-topic', 'robot_description',
+            '-x', '0.0',
+            '-y', '0.0',
+            '-z', '0.1',
+        ],
+        output='screen'
+    )
 
+    joint_broadcaster_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_state_broadcaster', '--controller-manager', '/controller_manager']
+    )
+
+    joint_trajectory_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_trajectory_controller', '--controller-manager', '/controller_manager']
+    )
 
 
     ld = LaunchDescription()
+    ld.add_action(pause_sim_arg)
     ld.add_action(sim_time_arg)
     ld.add_action(robot_state_publisher)
     ld.add_action(gazebo_server)
     ld.add_action(gazebo_client)
-
-
-
+    ld.add_action(urdf_spawn_node)
+    ld.add_action(joint_broadcaster_spawner)
+    ld.add_action(joint_trajectory_spawner)
 
     return ld

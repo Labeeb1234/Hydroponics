@@ -1,0 +1,6 @@
+initial_positions:
+  arm_base_joint: 1.57
+  shoulder_joint: -0.785398
+  bottom_wrist_joint: -0.4
+  elbow_joint: 0.0
+  top_wrist_joint: -0.5
