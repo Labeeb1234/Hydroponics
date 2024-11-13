@@ -13,9 +13,10 @@
         <link name="mani_base_1"/>
         <link name="arm_base"/>
         <link name="bicep"/>
-        <link name="bottom_wrist"/> 
+        <link name="bottom_wrist"/>
         <link name="elbow"/>
         <link name="top_wrist"/>
+        <link name="end_link"/>
         <link name="cam_link"/>
         <joint name="arm_base_joint"/>
         <joint name="shoulder_joint"/>
@@ -24,10 +25,12 @@
         <joint name="top_wrist_joint"/>
         <chain base_link="mani_base_1" tip_link="cam_link"/>
     </group>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="cam_end_effector" parent_link="end_link" group="robot_arm"/>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_joint" type="fixed" parent_frame="mani_base_1" child_link="arm_base"/>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
-    <!-- <disable_collisions link1="arm_base" link2="base_link" reason="Never"/> -->
+    <disable_collisions link1="arm_base" link2="base_link" reason="Never"/>
     <disable_collisions link1="arm_base" link2="bicep" reason="Adjacent"/>
     <disable_collisions link1="arm_base" link2="camera_link_1" reason="Never"/>
     <disable_collisions link1="arm_base" link2="imu_link" reason="Never"/>
@@ -52,9 +55,11 @@
     <disable_collisions link1="bicep" link2="wheel_4_1" reason="Never"/>
     <disable_collisions link1="bottom_wrist" link2="cam_link" reason="Never"/>
     <disable_collisions link1="bottom_wrist" link2="elbow" reason="Adjacent"/>
+    <disable_collisions link1="bottom_wrist" link2="end_link" reason="Never"/>
     <disable_collisions link1="bottom_wrist" link2="imu_link" reason="Never"/>
     <disable_collisions link1="bottom_wrist" link2="top_wrist" reason="Never"/>
-    <disable_collisions link1="cam_link" link2="top_wrist" reason="Adjacent"/>
+    <disable_collisions link1="cam_link" link2="end_link" reason="Adjacent"/>
+    <disable_collisions link1="cam_link" link2="top_wrist" reason="Never"/>
     <disable_collisions link1="camera_link_1" link2="imu_link" reason="Never"/>
     <disable_collisions link1="camera_link_1" link2="mani_base_1" reason="Never"/>
     <disable_collisions link1="camera_link_1" link2="wheel_1_1" reason="Never"/>
@@ -62,6 +67,7 @@
     <disable_collisions link1="camera_link_1" link2="wheel_3_1" reason="Never"/>
     <disable_collisions link1="camera_link_1" link2="wheel_4_1" reason="Never"/>
     <disable_collisions link1="elbow" link2="top_wrist" reason="Adjacent"/>
+    <disable_collisions link1="end_link" link2="top_wrist" reason="Adjacent"/>
     <disable_collisions link1="imu_link" link2="mani_base_1" reason="Never"/>
     <disable_collisions link1="imu_link" link2="wheel_1_1" reason="Never"/>
     <disable_collisions link1="imu_link" link2="wheel_2_1" reason="Never"/>
