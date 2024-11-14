@@ -57,9 +57,9 @@ class GoToPose: public rclcpp::Node{
     void controller_loop(){
         geometry_msgs::msg::Twist msg;
 
-        double err_x = 5*(this->goal_x-this->curr_x);
-        double err_y = 5*(this->goal_y-this->curr_y);
-        double err_yaw = 5*(this->goal_yaw-this->curr_yaw);
+        double err_x = 1*(this->goal_x-this->curr_x);
+        double err_y = 1*(this->goal_y-this->curr_y);
+        double err_yaw = 1*(this->goal_yaw-this->curr_yaw);
 
         // RCLCPP_INFO(this->get_logger(), "err_x: %lf, err_y: %lf", err_x, err_y);
 
