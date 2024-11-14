@@ -29,9 +29,6 @@ def generate_launch_description():
         ])}.items(),
     )
 
-    
-
-
     # bridge = Node(
     #     package='ros_gz_bridge',
     #     executable='parameter_bridge',

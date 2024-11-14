@@ -20,6 +20,8 @@ def generate_launch_description():
     robot_description_config = xacro.process_file(xacro_file) 
     robot_desc = robot_description_config.toxml()
 
+    world = os.path.join(pkg_gazebo_dir, 'world', f'{world_name}.world')
+
 
     sim_time_arg = DeclareLaunchArgument(
         'use_sim_time',
@@ -56,7 +58,7 @@ def generate_launch_description():
         ]),
         launch_arguments={
             'pause': LaunchConfiguration('pause_sim'),
-            'world': f'{world_name}.sdf'
+            'world': world
         }.items()
     )
 
@@ -110,8 +112,8 @@ def generate_launch_description():
     ld.add_action(gazebo_server)
     ld.add_action(gazebo_client)
     ld.add_action(urdf_spawn_node)
-    ld.add_action(joint_broadcaster_spawner)
-    ld.add_action(joint_trajectory_spawner)
+    # ld.add_action(joint_broadcaster_spawner)
+    # ld.add_action(joint_trajectory_spawner)
     ld.add_action(simple_base_motion_node)
 
     return ld
