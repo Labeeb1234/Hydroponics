@@ -8,6 +8,7 @@ import launch_ros.parameter_descriptions
 from launch_ros.actions import Node
 import xacro
 from launch_ros.substitutions import FindPackageShare
+import time
 
 
 def generate_launch_description():
@@ -94,6 +95,13 @@ def generate_launch_description():
         arguments=['joint_trajectory_controller', '--controller-manager', '/controller_manager']
     )
 
+    simple_base_motion_node = Node(
+        package='goal_pose_commander',
+        executable='go_to_pose_node',
+        name='go_to_pose',
+        output='screen'
+    )
+
 
     ld = LaunchDescription()
     ld.add_action(pause_sim_arg)
@@ -104,5 +112,6 @@ def generate_launch_description():
     ld.add_action(urdf_spawn_node)
     ld.add_action(joint_broadcaster_spawner)
     ld.add_action(joint_trajectory_spawner)
+    ld.add_action(simple_base_motion_node)
 
     return ld
