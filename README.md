@@ -1,5 +1,5 @@
 ## While using the amr_mani_moveit package make sure to have .setup_assitant script file populated with the script below otherwise you may run into CMAKE build errors
-'''python
+~~~yaml
 moveit_setup_assistant_config:
   urdf:
     package: amr_mani_description
@@ -25,5 +25,5 @@ moveit_setup_assistant_config:
     state:
       - position
       - velocity
-'''
+~~~
 ## Note: the file name should be ".setup_assistant"
