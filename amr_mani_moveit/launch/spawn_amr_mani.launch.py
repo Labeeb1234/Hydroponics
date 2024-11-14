@@ -130,11 +130,24 @@ def generate_launch_description():
             }
         ],
     )
+    joint_broadcaster_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_state_broadcaster', '--controller-manager', '/controller_manager']
+    )
+
+    joint_trajectory_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_trajectory_controller', '--controller-manager', '/controller_manager']
+    )
 
 
     return LaunchDescription([
         TimerAction(period=1.0, 
                     actions=[
+                            joint_broadcaster_spawner,
+                            joint_trajectory_spawner,
                             rviz,
                             move_group_node,
                             servo_node
