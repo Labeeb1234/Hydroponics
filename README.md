@@ -1,4 +1,4 @@
-#Also MOFO don't push anything into the main branch, make your own branch -->##italian finger gesture
+#Also MOFOs don't push anything into the main branch, make your own branch -->## italian finger gesture
 
 
 ## While using the amr_mani_moveit package make sure to have .setup_assitant script file populated with the script below otherwise you may run into CMAKE build errors
