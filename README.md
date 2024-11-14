@@ -1,4 +1,4 @@
-##While using the amr_mani_moveit package make sure to have .setup_assitant script file populated with the script below otherwise you may run into CMAKE build errors
+## While using the amr_mani_moveit package make sure to have .setup_assitant script file populated with the script below otherwise you may run into CMAKE build errors
 '''bash
 moveit_setup_assistant_config:
   urdf:
@@ -26,4 +26,4 @@ moveit_setup_assistant_config:
       - position
       - velocity
 '''
-##Note: the file name should be ".setup_assistant"
+## Note: the file name should be ".setup_assistant"
